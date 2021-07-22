@@ -1,0 +1,295 @@
+@import "./var.scss";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.slidebox{
+  width: 100%;
+  height: 60vh;
+  position: relative;
+  display: flex;
+
+  &__nav{
+    height: 100px;
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+    p{
+      color: #fff;
+      position: relative;
+      margin: 20px;
+    }
+  }
+
+  &__links{
+    display: flex;
+    align-items: center;
+
+    p{
+      padding: 20px 0;
+      cursor: pointer;
+      &::after{
+        content: "";
+        position: absolute;
+        height: 3px;
+        left: 50%;
+        right: 50%;
+        bottom: 0;
+        background: #fff;
+        transition: .250s ease-in;
+      }
+  
+      &:hover::after{
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+
+  &__logo{
+    font-size: 2rem;
+    align-self: center;
+  }
+
+  &__right{
+    position: relative;
+    flex:50%;
+    background: #fff;
+  } 
+  
+  &__info{
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 550px;
+    margin: auto;
+
+    h1,p,a{
+      padding: 20px;
+    }
+
+    h1{
+      font-size: 2rem;
+    }
+
+    p{
+      line-height: 30px;
+      color: $dark-gray;
+      font-size: $font-def;
+    }
+
+    a{
+      letter-spacing: 6px;
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      display: flex;
+      font-size: 18px;
+    }
+  }
+
+  &__btn{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+
+    &:hover{
+      opacity: .4;
+    }
+
+    img{
+      padding: 20px;
+    }
+  }
+
+  &__left{
+    flex: 50%;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__navigation{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    color: #fff;
+    background: black;
+    justify-content: space-evenly;
+
+    i{
+      font-size: 2rem;
+      padding: 20px;
+    }
+
+    
+  }
+
+  &__prev:hover, &__next:hover{
+    background: $very-dark-gray;
+    cursor: pointer;
+  }
+
+  &__mobileNav{
+    display: none;
+  }
+}
+
+// -----------------------bottom------------------------------------
+
+.bottom{
+  display: flex;
+  height: 40vh;
+
+  img{
+    display: block;
+    flex-grow: 1;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__text{
+    flex-grow: 3;
+    margin: auto;
+    padding: 20px;
+    background: transparent;
+
+    p{
+      padding: 20px;
+    }
+
+    .bottom__title{
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+    }
+
+    .bottom__desc{
+      line-height: 30px;
+      color: #a1a1a1;
+      font-size: 14px;
+    }
+  }
+
+}
+// -----------------------bottom------------------------------------
+
+
+
+// ----------------media------------------------------
+@media (max-width:1120px) {
+  .bottom{
+    flex-direction: column;
+    height: auto;
+  }
+
+
+  .slidebox{
+    flex-direction: column;
+    height: auto;
+
+    &__navigation{
+      top: auto;
+      bottom: 100%;
+      right: 0;
+      left: auto;
+    }
+
+    &__info{
+      font-size: 18px;
+    }
+
+    &__nav {
+      width: 100%;
+      justify-content: space-between;
+      padding: 0;
+    }
+
+    &__nav.active{
+      p{
+        color: #000;
+      }
+      & > p{
+        display: none;
+      }
+      
+      background: #fff;
+    }
+
+    &__img{
+      min-height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+@media (max-width:500px) {
+  .slidebox{
+
+    &__nav{
+
+      .slidebox__links{
+        display: none;
+      }
+
+      &.active{
+        .slidebox__links{
+          display: flex;
+          color: #000;
+        }
+      }
+    }
+
+    
+    &__mobileNav{
+      display: block;
+      font-size: 2rem;
+      color: #fff;
+      margin: 20px;
+      cursor: pointer;
+
+      .fa-times{
+        color: #000;
+      }
+    }
+  }
+}
+
+@media (max-width:375px){
+  .slidebox{
+    &__mobileNav{
+      position: absolute;
+      right: 0;
+    }
+
+    &__links{
+      background: #fff;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
